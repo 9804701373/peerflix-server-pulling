@@ -141,15 +141,15 @@ function del(str3)
       </div>
       <ul class="list-group">
         <li class="list-group-item" ng-repeat="file in torrent.files">
+<a id="{{ file.link }},{{ file.name }}" rel="{{ file.name }}" onclick="savelink(this.id)" class="btn"  style="cursor:pointer;" >Save</a></li>
 
-
-<a id="{{ file.link }},{{ file.name }}" rel="{{ file.name }}" onclick="savelink(this.id)" class="btn"  style="cursor:pointer;" target="_blank">save</a>
+<li class="list-group-item" ng-repeat="file in torrent.files">
+<a href="http://youimax.com/play.php?link={{ file.link }}&name{{ file.name }}"  class="btn"  style="cursor:pointer;" target="_blank">View</a></li>
                      
+                     <li class="list-group-item" ng-repeat="file in torrent.files">
                      <input type="hidden" class="filename" value="{{ file.name }}" />
                      <input type="hidden" class="file_link" value="{{ file.link}}" />
-                  <input type="checkbox" ng-model="file.selected" ng-click="select(torrent, file)">
-
-          <span class="fa fa-cloud-download"></span> <a ng-href="#" target="_blank">{{ file.name }} ({{ file.length / 1024 / 1024 | number:1 }} MB)</a></li>
+                  <input type="checkbox" ng-model="file.selected" ng-click="select(torrent, file)"><span class="fa fa-cloud-download"></span> <a ng-href="#" target="_blank">{{ file.name }} ({{ file.length / 1024 / 1024 | number:1 }} MB)</a></li>
       </ul>
     </div>
     <div class="panel-footer">
