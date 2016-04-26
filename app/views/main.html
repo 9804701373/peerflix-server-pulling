@@ -141,6 +141,9 @@ function del(str3)
     border-color: #4E9CAF !important;
 }
 </style>
+
+
+
 <div id="demo"></div>
 <div class="jumbotron" ng-file-drop ng-file-change="upload($files)">
   <div class="form-group">
@@ -168,11 +171,14 @@ function del(str3)
         <div ng-class-even="'space'" ng-class-odd="'progress-bar progress-bar-success'" ng-repeat="progress in torrent.progress track by $index" ng-style="{ width: progress + '%' }"></div>
       </div>
       <ul class="list-group">
+      
+      
+      
+      
         <li class="list-group-item" ng-repeat="file in torrent.files">
                      <input type="hidden" class="filename" value="{{ file.name }}" />
                      <input type="hidden" class="file_link" value="{{ file.link}}" />
-                  <input type="checkbox" ng-model="file.selected" ng-click="select(torrent, file)"> &nbsp; &nbsp;&nbsp;<a id="{{ file.link }},{{ file.name }}" rel="{{ file.name }}" onclick="savelink(this.id)" class="button"  style="cursor:pointer;" >Save </a>
-&nbsp; &nbsp;&nbsp;|| &nbsp; &nbsp;&nbsp;<a href="http://youimax.com/play.php?link={{ file.link }}&name={{ file.name }}"  class="button"  style="cursor:pointer;" target="_blank">Play</a> &nbsp; &nbsp;&nbsp;Name: <a ng-href="#" target="_blank">{{ file.name }} ({{ file.length / 1024 / 1024 | number:1 }} MB)</a></li>
+                   &nbsp; &nbsp;&nbsp;<a ng-href="{{ file.link }}" class="button"  style="cursor:pointer;" target="_blank">Play</a> &nbsp; &nbsp;&nbsp;Name: <a ng-href="{{ file.link }}" target="_blank">{{ file.name }} ({{ file.length / 1024 / 1024 | number:1 }} MB)</a></li>
       </ul>
     </div>
     <div class="panel-footer">
@@ -189,5 +195,5 @@ function del(str3)
   </div>
 </div>
 <div class="footer">
-  <p><span class="fa fa-heart"></span> Powerd By youimax.com</p>
+  <p><span class="fa fa-heart"></span> Powerd By Private Coder CG</p>
 </div>
