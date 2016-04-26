@@ -170,26 +170,8 @@ function del(str3)
       
         <div ng-class-even="'space'" ng-class-odd="'progress-bar progress-bar-success'" ng-repeat="progress in torrent.progress track by $index" ng-style="{ width: progress + '%' }"></div>
       </div>
-      <ul class="list-group">
       
-      
-      
-      
-        <li class="list-group-item" ng-repeat="file in torrent.files">
-                     <input type="hidden" class="filename" value="{{ file.name }}" />
-                     <input type="hidden" class="file_link" value="{{ file.link}}" />
-                     <div  style="width:150px; height:120px;"> 
-                     <div class="flowplayer">
-
-  <video id="video" poster="#" controls autoplay >
-    
-      <source type="video/mp4"  src="https://torrenttube007.herokuapp.com{{ file.link }}">
-   </video>
-   </div> </div>
-                   &nbsp; &nbsp;&nbsp;<!--<a ng-href="{{ file.link }}" class="button"  style="cursor:pointer;" target="_blank">Play</a> &nbsp; &nbsp;&nbsp;-->Name: <a ng-href="{{ file.link }}" target="_blank">{{ file.name }} ({{ file.length / 1024 / 1024 | number:1 }} MB)</a></li>
-      </ul>
-    </div>
-    <div class="panel-footer">
+      <div class="panel-footer">
       <ul class="list-unstyled list-inline">
         <li class="text-nowrap">
           <button type="button" class="btn btn-xs" ng-click="pause(torrent)"><span class="fa {{ torrent.stats.paused ? 'fa-play' : 'fa-pause' }}"></span></button>
@@ -200,6 +182,22 @@ function del(str3)
         <li class="text-nowrap" ng-show="torrent.stats"><strong>Queue:</strong> <span class="label label-primary">{{ torrent.stats.queue | number }}</span></li>
       </ul>
     </div>
+      <ul class="list-group">
+      
+      
+      
+      
+        <li class="list-group-item" ng-repeat="file in torrent.files">
+                     <input type="hidden" class="filename" value="{{ file.name }}" />
+                     <input type="hidden" class="file_link" value="{{ file.link}}" />
+                     <video id="video" poster="" height="100%;" width="100%" controls autoplay >
+    
+      <source type="video/mp4"  src="{{ file.link }}">
+   </video><br />
+                   File Name: <a ng-href="{{ file.link }}" target="_blank">{{ file.name }} ({{ file.length / 1024 / 1024 | number:1 }} MB)</a></li>
+      </ul>
+    </div>
+    
   </div>
 </div>
 <div class="footer">
