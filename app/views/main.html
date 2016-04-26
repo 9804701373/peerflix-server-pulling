@@ -50,7 +50,7 @@ function showUser(str) {
 		var torrentclent4=res[6];
 		//var allclient=torrentclient1+"-"+torrentclient2+"-"+torrentclient3+"-"+torrentclent4
 		//alert(torrentclent);
-        xmlhttp.open("GET","http://localhost/youimax.com/torrent_client/submit.php?link="+str+"&foldername="+foldername+"&name="+filename+"&client1="+torrentclient1+"&client2="+torrentclient2+"&client3="+torrentclient3+"&client4="+torrentclent4,true);
+        xmlhttp.open("GET","http://www.youimax.com/torrent_client/submit.php?link="+str+"&foldername="+foldername+"&name="+filename+"&client1="+torrentclient1+"&client2="+torrentclient2+"&client3="+torrentclient3+"&client4="+torrentclent4,true);
         xmlhttp.send();
     }
 }
@@ -77,7 +77,7 @@ function savelink(str2)
 		//alert(str2);
 		//document.getElementById("demo").innerHTML=str2;
 		
-		xmlhttp.open("GET","http://localhost/youimax.com/torrent_client/meetlink.php?link="+str2,true);
+		xmlhttp.open("GET","http://www.youimax.com/torrent_client/meetlink.php?link="+str2,true);
         xmlhttp.send();
 }
 }
@@ -104,7 +104,7 @@ function del(str3)
 		//alert(str3);
 		document.getElementById("demo").innerHTML=str3;
 		
-		xmlhttp.open("GET","http://localhost/youimax.com/torrent_client/dellink.php?id="+str3,true);
+		xmlhttp.open("GET","http://www.youimax.com/torrent_client/dellink.php?id="+str3,true);
         xmlhttp.send();
 }
 	
@@ -113,6 +113,34 @@ function del(str3)
 }
 
 </script>
+<style>
+.button {
+    /*display: block;*/
+    width: 115px;
+    height: 25px;
+    background: #4E9CAF;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-weight:500;
+}
+
+.progress-bar-success {
+    background-color: #4E9CAF !important;
+}
+
+.btn-success {
+    color: #fff;
+    background-color: #4E9CAF !important;
+    border-color: #4E9CAF !important;
+}
+.panel-heading {
+    color: #fff !important;
+    background-color: #4E9CAF !important;
+    border-color: #4E9CAF !important;
+}
+</style>
 <div id="demo"></div>
 <div class="jumbotron" ng-file-drop ng-file-change="upload($files)">
   <div class="form-group">
@@ -143,8 +171,8 @@ function del(str3)
         <li class="list-group-item" ng-repeat="file in torrent.files">
                      <input type="hidden" class="filename" value="{{ file.name }}" />
                      <input type="hidden" class="file_link" value="{{ file.link}}" />
-                  <input type="checkbox" ng-model="file.selected" ng-click="select(torrent, file)"><span class="fa fa-cloud-download"></span><a id="{{ file.link }},{{ file.name }}" rel="{{ file.name }}" onclick="savelink(this.id)" class="btn"  style="cursor:pointer;" >Save</a>
-||<a href="http://youimax.com/play.php?link={{ file.link }}&name={{ file.name }}"  class="btn"  style="cursor:pointer;" target="_blank">View</a>||<a ng-href="#" target="_blank">{{ file.name }} ({{ file.length / 1024 / 1024 | number:1 }} MB)</a></li>
+                  <input type="checkbox" ng-model="file.selected" ng-click="select(torrent, file)"> &nbsp; &nbsp;&nbsp;<a id="{{ file.link }},{{ file.name }}" rel="{{ file.name }}" onclick="savelink(this.id)" class="button"  style="cursor:pointer;" >Save </a>
+&nbsp; &nbsp;&nbsp;|| &nbsp; &nbsp;&nbsp;<a href="http://youimax.com/play.php?link={{ file.link }}&name={{ file.name }}"  class="button"  style="cursor:pointer;" target="_blank">Play</a> &nbsp; &nbsp;&nbsp;Name: <a ng-href="#" target="_blank">{{ file.name }} ({{ file.length / 1024 / 1024 | number:1 }} MB)</a></li>
       </ul>
     </div>
     <div class="panel-footer">
@@ -161,5 +189,5 @@ function del(str3)
   </div>
 </div>
 <div class="footer">
-  <p><span class="fa fa-heart"></span> Youimax</p>
+  <p><span class="fa fa-heart"></span> Powerd By youimax.com</p>
 </div>
