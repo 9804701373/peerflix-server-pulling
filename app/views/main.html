@@ -156,7 +156,7 @@ function del(str3)
 </div>
 <div ng-if="!torrents.length" class="alert alert-info" role="alert"><i class="fa fa-film"></i> Go get some torrents to watch!</div>
 <div class="row content">
-  <div ng-repeat="torrent in torrents" style="width: 191% !important;margin-left:-46%!important ;" class="panel panel-default" ng-class="{ 'panel-warning': !torrent.ready, 'panel-success': torrent.interested }">
+  <div ng-repeat="torrent in torrents" class="panel panel-default" ng-class="{ 'panel-warning': !torrent.ready, 'panel-success': torrent.interested }">
     <div class="panel-heading">
       <button type="button" class="close" id="{{ file.link }},{{ file.name }}" onclick="del(this.id)" ng-click="remove(torrent)">&times;</button>
       <span class="fa" ng-class="{
