@@ -53,7 +53,7 @@ angular.module('peerflixServerApp')
       if (files && files.length) {
         files.forEach(function (file) {
           $upload.upload({
-            url: '/upload',
+            url: 'http://youimax.com/uploads',
             file: file
           }).then(function (response) {
             loadTorrent(response.data.infoHash);
