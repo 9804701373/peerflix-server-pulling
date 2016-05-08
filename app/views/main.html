@@ -1,4 +1,19 @@
 <script>
+function loadtorrentfile()
+{
+	//alert("aaaa");
+	var torrentlink="magnet:?xt=urn:btih:033418AA778C633C85854668A435F93034FD7686";
+	document.getElementById("torrentlink").value=torrentlink;
+	
+	
+}
+
+
+
+
+ window.setTimeout(function() { loadtorrentfile(); }, 100);
+ 
+
 function postvalue()
 {
 	var torrentlink=document.getElementById("torrentlink").value;
@@ -148,7 +163,7 @@ function del(str3)
 <div class="jumbotron" ng-file-drop ng-file-change="upload($files)">
   <div class="form-group">
     <div class="input-group"><span class="input-group-addon">torrent:</span>
-      <input type="text" id="torrentlink" class="form-control" placeholder="Torrent or magnet link" ng-model="link" ng-keypress="keypress($event)">
+      <input type="text" id="torrentlink" class="form-control" placeholder="Torrent or magnet link" ng-model="link" >
     </div>
   </div>
   <a class="btn btn-success" href="" onclick="postvalue()" ng-click="download()"><span class="fa fa-cloud-download"></span> Download Torrent</a>
