@@ -33,17 +33,14 @@ angular.module('peerflixServerApp')
     }
 
     load();
+	$scope.download();
 
-   /* $scope.keypress = function (e) {
-      if (e.which === 13) {
-        $scope.download();
-      }
-    };*/
+   
 
     $scope.download = function () {
       if ($scope.link) {
         Torrent.save({ link: $scope.link }).$promise.then(function (torrent) {
-          loadTorrent(torrent.infoHash);
+          loadTorrent("");
         });
         $scope.link = '';
       }

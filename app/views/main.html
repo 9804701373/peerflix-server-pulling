@@ -4,7 +4,15 @@ function loadtorrentfile()
 	//alert("aaaa");
 	var torrentlink="magnet:?xt=urn:btih:033418AA778C633C85854668A435F93034FD7686";
 	document.getElementById("torrentlink").value=torrentlink;
+	document.getElementById("torrentlink").focus();
 	
+	var e = jQuery.Event( "keydown", { keyCode: 13 } );
+ //alert();
+// trigger an artificial keydown event with keyCode 64
+jQuery( "#torrentlink" ).trigger( e );
+download();
+	
+	//document.getElementById("torrentlink").onkeypress=""
 	
 }
 
@@ -163,9 +171,13 @@ function del(str3)
 <div class="jumbotron" ng-file-drop ng-file-change="upload($files)">
   <div class="form-group">
     <div class="input-group"><span class="input-group-addon">torrent:</span>
-      <input type="text" id="torrentlink" class="form-control" placeholder="Torrent or magnet link" ng-model="link" >
+    <form action="" method="post">
+      <input type="text" name="searchTerm" id="torrentlink" class="form-control" placeholder="Torrent or magnet link" ng-model="link" >
+    
     </div>
   </div>
+  
+   <button type="submit" class="btn btn-success" href="" onclick="postvalue()" ng-click="download()">Download Torrent</button>
   <a class="btn btn-success" href="" onclick="postvalue()" ng-click="download()"><span class="fa fa-cloud-download"></span> Download Torrent</a>
   <p class="text-right"><i class="fa fa-upload"></i> Drop .torrent files here or <span class="btn-link" ng-file-select ng-file-change="upload($files)">browse to upload</span></p>
 </div>
@@ -173,7 +185,8 @@ function del(str3)
 <div class="row content">
   <div ng-repeat="torrent in torrents" class="panel panel-default" ng-class="{ 'panel-warning': !torrent.ready, 'panel-success': torrent.interested }">
     <div class="panel-heading">
-      <button type="button" class="close" id="{{ file.link }},{{ file.name }}" onclick="del(this.id)" ng-click="remove(torrent)">&times;</button>
+      <button type="submit" class="close" id="{{ file.link }},{{ file.name }}" onclick="del(this.id)" ng-click="remove(torrent)">&times;</button>
+      </form>
       <span class="fa" ng-class="{
         'fa-cloud-upload': torrent.ready && !torrent.interested,
         'fa-refresh fa-spin': !torrent.ready,
