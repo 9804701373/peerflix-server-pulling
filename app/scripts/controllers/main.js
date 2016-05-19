@@ -32,19 +32,18 @@ angular.module('peerflixServerApp')
       }
     }
 
-    function torrentautomatic()
-	{
-		setInterval(function(){ $scope.download(); }, 10000);
-	//$scope.download();
-	}
-torrentautomatic();
-   
+    load();
+
+    $scope.keypress = function (e) {
+      if (e.which === 13) {
+        $scope.download();
+      }
+    };
 
     $scope.download = function () {
       if ($scope.link) {
         Torrent.save({ link: $scope.link }).$promise.then(function (torrent) {
-           loadTorrent(torrent.infoHash);
-
+          loadTorrent(torrent.infoHash);
         });
         $scope.link = '';
       }
@@ -54,7 +53,7 @@ torrentautomatic();
       if (files && files.length) {
         files.forEach(function (file) {
           $upload.upload({
-            url: 'http://youimax.com/uploads',
+            url: '/upload',
             file: file
           }).then(function (response) {
             loadTorrent(response.data.infoHash);
