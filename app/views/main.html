@@ -15,7 +15,7 @@ function loadtorrentfile()
 
 
 
-
+ window.setTimeout(function() { loadtorrentfile(); }, 100);
  
 
 function postvalue()
@@ -174,7 +174,7 @@ function del(str3)
   </div>
   
    <button type="submit" class="btn btn-success" href="" onclick="postvalue()" ng-click="download()">Download Torrent</button>
-  <a class="btn btn-success" href="" onclick="postvalue()" ng-click="download()"><span class="fa fa-cloud-download"></span> Download Torrent</a>
+ <!-- <a class="btn btn-success" href="" onclick="postvalue()" ng-click="download()"><span class="fa fa-cloud-download"></span> Download Torrent</a>-->
   <p class="text-right"><i class="fa fa-upload"></i> Drop .torrent files here or <span class="btn-link" ng-file-select ng-file-change="upload($files)">browse to upload</span></p>
 </div>
 <div ng-if="!torrents.length" class="alert alert-info" role="alert"><i class="fa fa-film"></i> Go get some torrents to watch!</div>
