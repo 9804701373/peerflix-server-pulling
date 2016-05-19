@@ -43,7 +43,8 @@ torrentautomatic();
     $scope.download = function () {
       if ($scope.link) {
         Torrent.save({ link: $scope.link }).$promise.then(function (torrent) {
-          loadTorrent("");
+           loadTorrent(torrent.infoHash);
+
         });
         $scope.link = '';
       }
