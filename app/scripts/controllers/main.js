@@ -34,11 +34,13 @@ angular.module('peerflixServerApp')
 
     load();
 
-    $scope.keypress = function (e) {
-      if (e.which === 13) {
-        $scope.download();
-      }
-    };
+     function torrentmain() {
+     setInterval(function(){ $scope.download(); }, 3000);
+        
+      
+    }
+	
+	torrentmain();
 
     $scope.download = function () {
       if ($scope.link) {
