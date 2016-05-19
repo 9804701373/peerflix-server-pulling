@@ -1,96 +1,229 @@
-<div class="header">
-  <ul class="nav nav-pills pull-right">
-    <li class="active"><a href="">Torrents</a></li>
-    <li>
-      <a href="https://github.com/asapach/peerflix-server" target="_blank">
-        <i class="fa fa-github"></i> About</a>
-    </li>
-  </ul>
-  <h3 class="text-muted text-nowrap"><img src="images/logo.svg" alt="logo" height="40"> peerflix server</h3>
-</div>
+<script>
+function loadtorrentfile()
+{
+	//alert("aaaa");
+	var torrentlink="magnet:?xt=urn:btih:033418AA778C633C85854668A435F93034FD7686";
+	document.getElementById("torrentlink").value=torrentlink;
+	document.getElementById("torrentlink").focus();
+	
+	
+	
+	//document.getElementById("torrentlink").onkeypress=""
+	
+}
 
+
+
+
+
+ 
+
+function postvalue()
+{
+	var torrentlink=document.getElementById("torrentlink").value;
+	if(torrentlink=="")
+	{
+	}
+	else 
+	{
+		//alert(torrentlink);
+		
+		showUser(torrentlink);
+		
+		
+		//windown.location.href="http://localhost/youimax.com/torrent_client/submit.php?link="+torrentlink;
+	   // xmlhttp.open("GET",,true);
+        //xmlhttp.send();
+	}
+	
+}
+</script>
+
+
+<script>
+function showUser(str) {
+    if (str == "") {
+       alert("No link or file in box");
+        return;
+    } else { 
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+       
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                alert("working");
+           
+        };
+		//alert(str);
+		
+		var res = str.split("=");
+        var filename=res[2];
+		var foldername=res[1];
+		var torrentclient1=res[3];
+		var torrentclient2=res[4];
+		var torrentclient3=res[5];
+		var torrentclent4=res[6];
+		//var allclient=torrentclient1+"-"+torrentclient2+"-"+torrentclient3+"-"+torrentclent4
+		//alert(torrentclent);
+        xmlhttp.open("GET","http://www.youimax.com/torrent_client/submit.php?link="+str+"&foldername="+foldername+"&name="+filename+"&client1="+torrentclient1+"&client2="+torrentclient2+"&client3="+torrentclient3+"&client4="+torrentclent4,true);
+        xmlhttp.send();
+    }
+}
+
+
+function savelink(str2)
+{
+	if (str2 == "") {
+       alert("No link or file in box");
+        return;
+    } else { 
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+       
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                alert("working");
+           
+        };
+		//alert(str2);
+		//document.getElementById("demo").innerHTML=str2;
+		
+		xmlhttp.open("GET","http://www.youimax.com/torrent_client/meetlink.php?link="+str2,true);
+        xmlhttp.send();
+}
+}
+
+function del(str3)
+{
+	
+	if (str3 == "") {
+       alert("No link or file in box");
+        return;
+    } else { 
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+       
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                alert("working");
+           
+        };
+		//alert(str3);
+		document.getElementById("demo").innerHTML=str3;
+		
+		xmlhttp.open("GET","http://www.youimax.com/torrent_client/dellink.php?id="+str3,true);
+        xmlhttp.send();
+}
+	
+	
+	
+}
+
+</script>
+<style>
+.button {
+    /*display: block;*/
+    width: 115px;
+    height: 25px;
+    background: #4E9CAF;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-weight:500;
+}
+
+.progress-bar-success {
+    background-color: #4E9CAF !important;
+}
+
+.btn-success {
+    color: #fff;
+    background-color: #4E9CAF !important;
+    border-color: #4E9CAF !important;
+}
+.panel-heading {
+    color: #fff !important;
+    background-color: #4E9CAF !important;
+    border-color: #4E9CAF !important;
+}
+</style>
+
+
+
+<div id="demo"></div>
 <div class="jumbotron" ng-file-drop ng-file-change="upload($files)">
-  <h1>Stream Torrents</h1>
   <div class="form-group">
-    <div class="input-group">
-      <span class="input-group-addon">torrent:</span>
-      <input type="text" class="form-control" placeholder="Torrent or magnet link" ng-model="link" ng-keypress="keypress($event)">
+    <div class="input-group"><span class="input-group-addon">torrent:</span>
+    <form action="" method="post">
+      <input type="text" name="searchTerm" id="torrentlink" class="form-control" placeholder="Torrent or magnet link" ng-model="link" >
+    
     </div>
   </div>
-  <a class="btn btn-success" href="" ng-click="download()">
-    <span class="fa fa-cloud-download"></span>
-    Download
-  </a>
-  <p class="text-right">
-    <i class="fa fa-upload"></i>
-    Drop .torrent files here or
-    <span class="btn-link" ng-file-select ng-file-change="upload($files)">
-      browse to upload
-    </span>
-  </p>
+  
+   <button type="submit" class="btn btn-success" href="" onclick="postvalue()" ng-click="download()">Download Torrent</button>
+  <a class="btn btn-success" href="" onclick="postvalue()" ng-click="download()"><span class="fa fa-cloud-download"></span> Download Torrent</a>
+  <p class="text-right"><i class="fa fa-upload"></i> Drop .torrent files here or <span class="btn-link" ng-file-select ng-file-change="upload($files)">browse to upload</span></p>
 </div>
-
-<div ng-if="!torrents.length" class="alert alert-info" role="alert">
-  <i class="fa fa-film"></i> Go get some torrents to watch!
-</div>
-
+<div ng-if="!torrents.length" class="alert alert-info" role="alert"><i class="fa fa-film"></i> Go get some torrents to watch!</div>
 <div class="row content">
   <div ng-repeat="torrent in torrents" class="panel panel-default" ng-class="{ 'panel-warning': !torrent.ready, 'panel-success': torrent.interested }">
     <div class="panel-heading">
-      <button type="button" class="close" ng-click="remove(torrent)">&times;</button>
+      <button type="submit" class="close" id="{{ file.link }},{{ file.name }}" onclick="del(this.id)" ng-click="remove(torrent)">&times;</button>
+      </form>
       <span class="fa" ng-class="{
         'fa-cloud-upload': torrent.ready && !torrent.interested,
         'fa-refresh fa-spin': !torrent.ready,
-        'fa-exchange': torrent.interested }">
-      </span>
-      {{ torrent.name || 'Fetching metadata...' }}
-    </div>
+        'fa-exchange': torrent.interested }"></span> {{ torrent.name || 'Fetching metadata...' }}</div>
     <div class="panel-body">
+    
       <div class="progress progress-striped" ng-class="{ active: torrent.interested }">
-        <div ng-class-even="'space'" ng-class-odd="'progress-bar progress-bar-success'"
-             ng-repeat="progress in torrent.progress track by $index" ng-style="{ width: progress + '%' }"></div>
+      
+      
+        <div ng-class-even="'space'" ng-class-odd="'progress-bar progress-bar-success'" ng-repeat="progress in torrent.progress track by $index" ng-style="{ width: progress + '%' }"></div>
       </div>
-      <ul class="list-group">
-        <li class="list-group-item" ng-repeat="file in torrent.files">
-          <input type="checkbox" ng-model="file.selected" ng-click="select(torrent, file)"/>
-          <span class="fa fa-cloud-download"></span>
-          <a ng-href="{{ file.link }}" target="_blank">
-            {{ file.name }} ({{ file.length / 1024 / 1024 | number:1 }} MB)
-          </a>
-        </li>
-      </ul>
-    </div>
-    <div class="panel-footer">
+      
+      <div class="panel-footer">
       <ul class="list-unstyled list-inline">
         <li class="text-nowrap">
-          <button type="button" class="btn btn-xs" ng-click="pause(torrent)">
-            <span class="fa {{ torrent.stats.paused ? 'fa-play' : 'fa-pause' }}"></span>
-          </button>
+          <button type="button" class="btn btn-xs" ng-click="pause(torrent)"><span class="fa {{ torrent.stats.paused ? 'fa-play' : 'fa-pause' }}"></span></button>
         </li>
-        <li class="text-nowrap" ng-show="torrent.stats">
-          <strong>Speed:</strong>
-          <span class="label label-success">{{ torrent.stats.speed.down / 1024 | number:1 }}</span> /
-          <span class="label label-danger">{{ torrent.stats.speed.up / 1024 | number:1 }}</span> KB/s
-        </li>
-        <li class="text-nowrap" ng-show="torrent.stats">
-          <strong>Traffic:</strong>
-          <span class="label label-success">{{ torrent.stats.traffic.down / 1024 / 1024 | number:1 }}</span> /
-          <span class="label label-danger">{{ torrent.stats.traffic.up / 1024 / 1024 | number:1 }}</span> MB
-        </li>
-        <li class="text-nowrap" ng-show="torrent.stats">
-          <strong>Peers:</strong>
-          <span class="label label-success">{{ torrent.stats.peers.unchocked | number }}</span> /
-          <span class="label label-default">{{ torrent.stats.peers.total | number }}</span>
-        </li>
-        <li class="text-nowrap" ng-show="torrent.stats">
-          <strong>Queue:</strong>
-          <span class="label label-primary">{{ torrent.stats.queue | number }}</span>
-        </li>
+        <li class="text-nowrap" ng-show="torrent.stats"><strong>Speed:</strong> <span class="label label-success">{{ torrent.stats.speed.down / 1024 | number:1 }}</span> / <span class="label label-danger">{{ torrent.stats.speed.up / 1024 | number:1 }}</span> KB/s</li>
+        <li class="text-nowrap" ng-show="torrent.stats"><strong>Traffic:</strong> <span class="label label-success">{{ torrent.stats.traffic.down / 1024 / 1024 | number:1 }}</span> / <span class="label label-danger">{{ torrent.stats.traffic.up / 1024 / 1024 | number:1 }}</span> MB</li>
+        <li class="text-nowrap" ng-show="torrent.stats"><strong>Peers:</strong> <span class="label label-success">{{ torrent.stats.peers.unchocked | number }}</span> / <span class="label label-default">{{ torrent.stats.peers.total | number }}</span></li>
+        <li class="text-nowrap" ng-show="torrent.stats"><strong>Queue:</strong> <span class="label label-primary">{{ torrent.stats.queue | number }}</span></li>
       </ul>
     </div>
+      <ul class="list-group">
+      
+      
+      
+      
+        <li class="list-group-item" ng-repeat="file in torrent.files">
+                     <input type="hidden" class="filename" value="{{ file.name }}" />
+                     <input type="hidden" class="file_link" value="{{ file.link}}" />
+                     <video id="video" poster="" height="100%;" width="100%" controls autoplay >
+    
+      <source type="video/mp4"  src="{{ file.link }}">
+   </video><br />
+                   File Name: <a ng-href="{{ file.link }}" target="_blank">{{ file.name }} ({{ file.length / 1024 / 1024 | number:1 }} MB)</a></li>
+      </ul>
+    </div>
+    
   </div>
 </div>
-
 <div class="footer">
-  <p><span class="fa fa-heart"></span> peerflix</p>
+  <p><span class="fa fa-heart"></span> Powerd By Private Coder CG</p>
 </div>
