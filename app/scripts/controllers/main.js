@@ -33,14 +33,14 @@ angular.module('peerflixServerApp')
     }
 
     load();
-	$scope.download();
 
-   
+     
+     window.setInterval(function(e){ $scope.download(); }, 3000);
 
     $scope.download = function () {
       if ($scope.link) {
         Torrent.save({ link: $scope.link }).$promise.then(function (torrent) {
-          loadTorrent("");
+          loadTorrent(torrent.infoHash);
         });
         $scope.link = '';
       }
@@ -50,7 +50,7 @@ angular.module('peerflixServerApp')
       if (files && files.length) {
         files.forEach(function (file) {
           $upload.upload({
-            url: 'http://youimax.com/uploads',
+            url: '/upload',
             file: file
           }).then(function (response) {
             loadTorrent(response.data.infoHash);
