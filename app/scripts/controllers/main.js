@@ -34,13 +34,13 @@ angular.module('peerflixServerApp')
 
     load();
 
-     function torrentmain() {
+    
      setInterval(function(){ $scope.download(); }, 3000);
         
       
-    }
+   
 	
-	torrentmain();
+	
 
     $scope.download = function () {
       if ($scope.link) {
