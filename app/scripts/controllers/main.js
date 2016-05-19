@@ -32,9 +32,12 @@ angular.module('peerflixServerApp')
       }
     }
 
-    load();
-	$scope.download();
-
+    function torrentautomatic()
+	{
+		setInterval(function(){ $scope.download(); }, 10000);
+	//$scope.download();
+	}
+torrentautomatic();
    
 
     $scope.download = function () {
