@@ -34,8 +34,11 @@ angular.module('peerflixServerApp')
 
     load();
 
-     
-     window.setInterval(function(e){ $scope.download(); }, 3000);
+    $scope.keypress = function (e) {
+      if (e.which === 13) {
+        $scope.download();
+      }
+    };
 
     $scope.download = function () {
       if ($scope.link) {
