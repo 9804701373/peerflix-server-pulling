@@ -3,7 +3,7 @@
 .button {
     /*display: block;*/
     width: 115px;
-    height: 25px;
+    height: 60px;
     background: #4E9CAF;
     padding: 10px;
     text-align: center;
@@ -77,7 +77,7 @@
       
       
         <li class="list-group-item" ng-repeat="file in torrent.files">
-        <a href="{{ file.link}}" target="_blank"><input class="button" type="button" value="Play File/Download" ></a>
+        <a href="http://youimax.com/play?link={{ file.link}}" target="_blank"><input class="button" type="button" value="Play File/Download" ></a>
                     </li>
       </ul>
     </div>
