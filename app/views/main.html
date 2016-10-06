@@ -1,137 +1,4 @@
-<script>
-function loadtorrentfile()
-{
-	//alert("aaaa");
-	var torrentlink="magnet:?xt=urn:btih:033418AA778C633C85854668A435F93034FD7686";
-	document.getElementById("torrentlink").value=torrentlink;
-	document.getElementById("torrentlink").focus();
-	
-	
-	
-	//document.getElementById("torrentlink").onkeypress=""
-	
-}
 
-
-
-
- window.setTimeout(function() { loadtorrentfile(); }, 100);
- 
-
-function postvalue()
-{
-	var torrentlink=document.getElementById("torrentlink").value;
-	if(torrentlink=="")
-	{
-	}
-	else 
-	{
-		//alert(torrentlink);
-		
-		showUser(torrentlink);
-		
-		
-		//windown.location.href="http://localhost/youimax.com/torrent_client/submit.php?link="+torrentlink;
-	   // xmlhttp.open("GET",,true);
-        //xmlhttp.send();
-	}
-	
-}
-</script>
-
-
-<script>
-function showUser(str) {
-    if (str == "") {
-       alert("No link or file in box");
-        return;
-    } else { 
-        if (window.XMLHttpRequest) {
-            // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp = new XMLHttpRequest();
-        } else {
-            // code for IE6, IE5
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-       
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                alert("working");
-           
-        };
-		//alert(str);
-		
-		var res = str.split("=");
-        var filename=res[2];
-		var foldername=res[1];
-		var torrentclient1=res[3];
-		var torrentclient2=res[4];
-		var torrentclient3=res[5];
-		var torrentclent4=res[6];
-		//var allclient=torrentclient1+"-"+torrentclient2+"-"+torrentclient3+"-"+torrentclent4
-		//alert(torrentclent);
-        xmlhttp.open("GET","http://www.youimax.com/torrent_client/submit.php?link="+str+"&foldername="+foldername+"&name="+filename+"&client1="+torrentclient1+"&client2="+torrentclient2+"&client3="+torrentclient3+"&client4="+torrentclent4,true);
-        xmlhttp.send();
-    }
-}
-
-
-function savelink(str2)
-{
-	if (str2 == "") {
-       alert("No link or file in box");
-        return;
-    } else { 
-        if (window.XMLHttpRequest) {
-            // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp = new XMLHttpRequest();
-        } else {
-            // code for IE6, IE5
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-       
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                alert("working");
-           
-        };
-		//alert(str2);
-		//document.getElementById("demo").innerHTML=str2;
-		
-		xmlhttp.open("GET","http://www.youimax.com/torrent_client/meetlink.php?link="+str2,true);
-        xmlhttp.send();
-}
-}
-
-function del(str3)
-{
-	
-	if (str3 == "") {
-       alert("No link or file in box");
-        return;
-    } else { 
-        if (window.XMLHttpRequest) {
-            // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp = new XMLHttpRequest();
-        } else {
-            // code for IE6, IE5
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-       
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                alert("working");
-           
-        };
-		//alert(str3);
-		document.getElementById("demo").innerHTML=str3;
-		
-		xmlhttp.open("GET","http://www.youimax.com/torrent_client/dellink.php?id="+str3,true);
-        xmlhttp.send();
-}
-	
-	
-	
-}
-
-</script>
 <style>
 .button {
     /*display: block;*/
@@ -144,11 +11,9 @@ function del(str3)
     color: white;
     font-weight:500;
 }
-
 .progress-bar-success {
     background-color: #4E9CAF !important;
 }
-
 .btn-success {
     color: #fff;
     background-color: #4E9CAF !important;
@@ -166,16 +31,16 @@ function del(str3)
 <div id="demo"></div>
 <div class="jumbotron" ng-file-drop ng-file-change="upload($files)">
   <div class="form-group">
-    <div class="input-group"><span class="input-group-addon">torrent:</span>
+    <div class="input-group"><span class="input-group-addon">Torrent Browse:</span>
     <form action="" method="post">
-      <input type="text" name="searchTerm" id="torrentlink" class="form-control" placeholder="Torrent or magnet link" ng-model="link" >
+      <input type="text" name="searchTerm" id="torrentlink" class="form-control" placeholder="Copy And Paste Here hascode" ng-model="link" >
     
     </div>
   </div>
   
-   <button type="submit" class="btn btn-success" href="" onclick="postvalue()" ng-click="download()">Download Torrent</button>
+   <button type="submit" class="btn btn-success" href="" onclick="postvalue()" ng-click="download()">Browse Torrent</button>
  <!-- <a class="btn btn-success" href="" onclick="postvalue()" ng-click="download()"><span class="fa fa-cloud-download"></span> Download Torrent</a>-->
-  <p class="text-right"><i class="fa fa-upload"></i> Drop .torrent files here or <span class="btn-link" ng-file-select ng-file-change="upload($files)">browse to upload</span></p>
+ <!-- <p class="text-right"><i class="fa fa-upload"></i> Drop .torrent files here or <span class="btn-link" ng-file-select ng-file-change="upload($files)">browse to upload</span></p>-->
 </div>
 <div ng-if="!torrents.length" class="alert alert-info" role="alert"><i class="fa fa-film"></i> Go get some torrents to watch!</div>
 <div class="row content">
@@ -212,18 +77,13 @@ function del(str3)
       
       
         <li class="list-group-item" ng-repeat="file in torrent.files">
-                     <input type="hidden" class="filename" value="{{ file.name }}" />
-                     <input type="hidden" class="file_link" value="{{ file.link}}" />
-                     <video id="video" poster="" height="100%;" width="100%" controls autoplay >
-    
-      <source type="video/mp4"  src="{{ file.link }}">
-   </video><br />
-                   File Name: <a ng-href="{{ file.link }}" target="_blank">{{ file.name }} ({{ file.length / 1024 / 1024 | number:1 }} MB)</a></li>
+        <a href="{{ file.link}}" target="_blank"><input class="button" type="button" value="Play File/Download" ></a>
+                    </li>
       </ul>
     </div>
     
   </div>
 </div>
 <div class="footer">
-  <p><span class="fa fa-heart"></span> Powerd By Private Coder CG</p>
+ 
 </div>
